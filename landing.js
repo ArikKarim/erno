@@ -6,9 +6,11 @@ const THEME_LABELS = {
 
 const landing = document.querySelector("#landing");
 const themeButton = document.querySelector("#landingThemeButton");
+const accordionCards = Array.from(document.querySelectorAll("[data-accordion-card]"));
 
 applyStoredTheme();
 updateLandingScroll();
+setupLandingAccordion();
 
 themeButton?.addEventListener("click", toggleLandingTheme);
 window.addEventListener("scroll", updateLandingScroll, { passive: true });
@@ -47,6 +49,23 @@ function toggleLandingTheme() {
   document.documentElement.dataset.theme = nextTheme;
   saveStoredTheme(nextTheme);
   applyStoredTheme();
+}
+
+function setupLandingAccordion() {
+  if (!accordionCards.length) return;
+
+  accordionCards.forEach((card) => {
+    const toggle = card.querySelector(".landing-accordion-toggle");
+    toggle?.addEventListener("click", () => setActiveAccordionCard(card));
+  });
+}
+
+function setActiveAccordionCard(activeCard) {
+  accordionCards.forEach((card) => {
+    const isActive = card === activeCard;
+    card.classList.toggle("is-active", isActive);
+    card.querySelector(".landing-accordion-toggle")?.setAttribute("aria-expanded", String(isActive));
+  });
 }
 
 function updateLandingScroll() {
