@@ -6,7 +6,7 @@
     <title>erno</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./landing.css?v=2026-07-08-clean-2" />
+    <link rel="stylesheet" href="./landing.css?v=2026-07-08-accordion" />
   </head>
   <body class="landing-page">
     <header class="landing-nav" aria-label="Site navigation">
@@ -29,7 +29,6 @@
     <main>
       <section class="landing" id="landing" aria-labelledby="landingTitle">
         <div class="landing-inner">
-          <p class="landing-kicker">erno</p>
           <h1 class="landing-number" id="landingTitle">
             <span class="fill-line" style="--line-fill: var(--line-fill-1);">43 quintillion positions.</span>
           </h1>
@@ -45,35 +44,49 @@
         </div>
       </section>
 
-      <section class="landing-summary" aria-label="erno summary">
-        <div class="landing-section-heading">
-          <p class="eyebrow">Practice loop</p>
-          <h2>Everything you need for the next solve.</h2>
-          <p>erno keeps timing, scrambling, and walkthroughs in one calm local workspace.</p>
-        </div>
+      <section class="landing-accordion-section" aria-label="erno overview">
+        <div class="landing-accordion" data-landing-accordion>
+          <article class="landing-accordion-card is-active" data-accordion-card>
+            <button class="landing-accordion-toggle" type="button" aria-expanded="true">
+              <span class="landing-accordion-label">Timer</span>
+              <span class="landing-accordion-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="landing-accordion-content">
+              <p class="landing-accordion-statement">Time the solve without the interface getting in the way.</p>
+              <div>
+                <h2>Timer</h2>
+                <p>Inspection, averages, sessions, and a large focused display.</p>
+              </div>
+            </div>
+          </article>
 
-        <div class="landing-panel-grid" aria-label="erno features">
-          <article class="landing-panel panel-large">
-            <p class="landing-panel-kicker">Timer</p>
-            <h3>Time clearly.</h3>
-            <p>Large display, inspection, averages, and session history without extra chrome.</p>
+          <article class="landing-accordion-card" data-accordion-card>
+            <button class="landing-accordion-toggle" type="button" aria-expanded="false">
+              <span class="landing-accordion-label">Scramble</span>
+              <span class="landing-accordion-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="landing-accordion-content">
+              <p class="landing-accordion-statement">Generate a 3x3 scramble and keep the preview aligned.</p>
+              <div>
+                <h2>Scramble</h2>
+                <p>White on top, green in front, with click-to-copy notation.</p>
+              </div>
+            </div>
           </article>
-          <article class="landing-panel">
-            <p class="landing-panel-kicker">Scramble</p>
-            <h3>Keep orientation honest.</h3>
-            <p>WCA-style 3x3 scrambles with the cube preview aligned white top, green front.</p>
-          </article>
-          <article class="landing-panel">
-            <p class="landing-panel-kicker">Solver</p>
-            <h3>Review one stage at a time.</h3>
-            <p>Beginner CFOP and short-route walkthroughs with an interactive cube.</p>
-          </article>
-        </div>
 
-        <div class="landing-metrics" aria-label="erno numbers">
-          <p><span>Local</span>No account</p>
-          <p><span>3x3</span>Focused</p>
-          <p><span>WCA</span>Oriented</p>
+          <article class="landing-accordion-card" data-accordion-card>
+            <button class="landing-accordion-toggle" type="button" aria-expanded="false">
+              <span class="landing-accordion-label">Solver</span>
+              <span class="landing-accordion-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="landing-accordion-content">
+              <p class="landing-accordion-statement">Step through the route instead of staring at a move list.</p>
+              <div>
+                <h2>Solver</h2>
+                <p>Beginner CFOP and short-route walkthroughs with a 3D cube.</p>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
     </main>
