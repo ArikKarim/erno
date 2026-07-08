@@ -1,0 +1,16 @@
+.agents/
+.codex/
+.git-codex/
+.npm-cache/
+
+.codex-*
+vendor-*-extract/
+vendor-inspect-rubiks-cube-solver/
+vendor/
+
+*.tgz
+node_modules/
+
+.DS_Store
+Thumbs.db
+.env
