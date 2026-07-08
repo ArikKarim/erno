@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>erno</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="landing-page">
+    <header class="landing-nav" aria-label="Site navigation">
+      <a class="landing-brand" href="./index.html">erno</a>
+      <nav class="landing-nav-links" aria-label="App links">
+        <a href="./app.html?view=timer">Timer</a>
+        <a href="./app.html?view=solver">Solver</a>
+        <button class="landing-theme-button" id="landingThemeButton" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.25 14.15A8.5 8.5 0 0 1 9.85 3.75a7 7 0 1 0 10.4 10.4Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="landing" id="landing" aria-labelledby="landingTitle">
+        <div class="landing-inner">
+          <p class="landing-kicker">erno</p>
+          <h1 class="landing-number" id="landingTitle">
+            <span class="fill-line" style="--line-fill: var(--line-fill-1);">43 quintillion states.</span>
+          </h1>
+          <p class="landing-copy">
+            <span class="fill-line" style="--line-fill: var(--line-fill-2);">One clean way to practice them.</span>
+            <span class="fill-line" style="--line-fill: var(--line-fill-3);">Time the scramble.</span>
+            <span class="fill-line" style="--line-fill: var(--line-fill-4);">Review the solve.</span>
+          </p>
+          <div class="landing-actions">
+            <a class="landing-action primary" href="./app.html?view=timer">Start timing</a>
+            <a class="landing-action" href="./app.html?view=solver">Open solver</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-summary" aria-label="erno summary">
+        <div class="landing-section-heading">
+          <p class="eyebrow">Why erno</p>
+          <h2>Built for the quiet loop.</h2>
+          <p>Everything stays close to the solve: scramble, time, inspect, review, repeat.</p>
+        </div>
+
+        <div class="landing-panel-grid" aria-label="erno features">
+          <article class="landing-panel panel-large">
+            <p class="landing-panel-kicker">Timer</p>
+            <h3>One focused surface.</h3>
+            <p>Large timing, clean controls, and session history without the surrounding noise.</p>
+          </article>
+          <article class="landing-panel">
+            <p class="landing-panel-kicker">Scramble</p>
+            <h3>WCA-first orientation.</h3>
+            <p>Scrambles and previews stay aligned around the standard green-front, white-top view.</p>
+          </article>
+          <article class="landing-panel">
+            <p class="landing-panel-kicker">Solver</p>
+            <h3>Methods you can step through.</h3>
+            <p>Move from a generated scramble into guided Beginner CFOP or short optimal solutions.</p>
+          </article>
+          <article class="landing-panel panel-wide">
+            <p class="landing-panel-kicker">Local</p>
+            <h3>No account, no cloud, no setup.</h3>
+            <p>Open the app and solve. Your sessions live in this browser so the workspace feels instant.</p>
+          </article>
+        </div>
+
+        <div class="landing-metrics" aria-label="erno numbers">
+          <p><span>43 quintillion</span>states</p>
+          <p><span>20 moves</span>God's Number</p>
+          <p><span>15 seconds</span>inspection</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./landing.js" type="module"></script>
+  </body>
+</html>
