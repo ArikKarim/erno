@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>erno app</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <header class="topbar">
+        <div class="brand">
+          <h1><a href="./index.html">erno</a></h1>
+        </div>
+
+        <div class="top-controls" aria-label="Timer settings">
+          <label class="field">
+            <span>Event</span>
+            <select id="eventSelect"></select>
+          </label>
+          <label class="field">
+            <span>Session</span>
+            <select id="sessionSelect"></select>
+          </label>
+          <div class="toolbar-actions">
+            <button class="icon-button" id="themeToggleButton" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+              <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+              </svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.25 14.15A8.5 8.5 0 0 1 9.85 3.75a7 7 0 1 0 10.4 10.4Z" />
+              </svg>
+            </button>
+            <button class="icon-button" id="fullscreenToggleButton" type="button" aria-label="Enter full screen" title="Enter full screen">
+              <svg class="fullscreen-enter-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5" />
+              </svg>
+              <svg class="fullscreen-exit-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 3v6H3M15 3v6h6M21 15h-6v6M3 15h6v6" />
+              </svg>
+            </button>
+            <button class="icon-button" id="newSessionButton" type="button" aria-label="New session" title="New session">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <nav class="view-tabs" aria-label="Views">
+          <button class="view-tab is-active" id="timerTab" type="button" role="tab" aria-controls="timerView" aria-selected="true" data-view="timer">Timer</button>
+          <button class="view-tab" id="cfopTab" type="button" role="tab" aria-controls="cfopView" aria-selected="false" data-view="cfop">Solver</button>
+        </nav>
+
+        <section class="app-view is-active" id="timerView" role="tabpanel" aria-labelledby="timerTab" data-view-panel="timer">
+          <section class="timer-panel" aria-label="Timer">
+            <div class="scramble-bar">
+              <button class="icon-button scramble-nav" id="previousScrambleButton" type="button" aria-label="Previous scramble" title="Previous scramble">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m15 18-6-6 6-6" />
+                </svg>
+              </button>
+              <button class="scramble-text" id="scrambleText" type="button" aria-label="Copy scramble" title="Copy scramble"></button>
+              <button class="icon-button scramble-nav" id="nextScrambleButton" type="button" aria-label="Next scramble" title="Next scramble">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+
+            <div class="timer-stage">
+              <div class="timer-stack">
+                <p class="timer-status" id="timerStatus">Ready</p>
+                <button class="timer-button" id="timerDisplay" type="button" aria-label="Timer">0.00</button>
+                <div class="quick-actions" id="quickActions" hidden>
+                  <button type="button" data-latest-penalty="ok">OK</button>
+                  <button type="button" data-latest-penalty="+2">+2</button>
+                  <button type="button" data-latest-penalty="dnf">DNF</button>
+                  <button type="button" data-delete-latest="true">Delete</button>
+                </div>
+              </div>
+              <div class="cube-preview" id="cubePreview" aria-hidden="true"></div>
+            </div>
+          </section>
+
+          <section class="stats-grid" aria-label="Session statistics">
+            <article class="stat-card"><span>Best</span><strong id="bestStat">--</strong></article>
+            <article class="stat-card"><span>Mean</span><strong id="meanStat">--</strong></article>
+            <article class="stat-card"><span>Ao5</span><strong id="ao5Stat">--</strong></article>
+            <article class="stat-card"><span>Ao12</span><strong id="ao12Stat">--</strong></article>
+            <article class="stat-card"><span>Solves</span><strong id="countStat">0</strong></article>
+          </section>
+
+          <section class="workspace-grid">
+            <section class="panel solves-panel" aria-label="Solve history">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">History</p>
+                  <h2>Solves</h2>
+                </div>
+                <button class="secondary-button" id="clearSolvesButton" type="button">Clear</button>
+              </div>
+              <ol class="solve-list" id="solveList"></ol>
+              <p class="empty-state" id="emptyState">No solves yet.</p>
+            </section>
+
+            <aside class="panel settings-panel" aria-label="Timer options">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Setup</p>
+                  <h2>Options</h2>
+                </div>
+              </div>
+
+              <label class="switch-row">
+                <input id="inspectionToggle" type="checkbox" />
+                <span class="switch-ui" aria-hidden="true"></span>
+                <span>Inspection</span>
+              </label>
+              <label class="switch-row">
+                <input id="autoScrambleToggle" type="checkbox" />
+                <span class="switch-ui" aria-hidden="true"></span>
+                <span>Auto scramble</span>
+              </label>
+              <label class="switch-row">
+                <input id="cubePreviewToggle" type="checkbox" />
+                <span class="switch-ui" aria-hidden="true"></span>
+                <span>Cube preview</span>
+              </label>
+
+              <div class="latest-card" id="latestCard" hidden>
+                <span>Latest</span>
+                <strong id="latestTime">--</strong>
+                <p id="latestMeta"></p>
+              </div>
+            </aside>
+          </section>
+        </section>
+
+        <section class="app-view cfop-view" id="cfopView" role="tabpanel" aria-labelledby="cfopTab" data-view-panel="cfop" hidden>
+          <section class="solver-layout">
+            <section class="panel solution-panel" aria-label="Solver solution">
+              <div class="panel-header solution-header">
+                <div>
+                  <p class="eyebrow">Solver</p>
+                  <h2 id="solutionMethodTitle">Beginner CFOP</h2>
+                </div>
+                <div class="solution-header-actions">
+                  <label class="field solution-method-field">
+                    <span>Method</span>
+                    <select id="methodSelect"></select>
+                  </label>
+                  <button class="secondary-button" id="copySolutionButton" type="button">Copy</button>
+                </div>
+              </div>
+
+              <button class="solution-scramble" id="solutionScramble" type="button" aria-label="Copy scramble"></button>
+
+              <div class="solution-stats">
+                <div><span>Event</span><strong id="solutionEvent">3x3</strong></div>
+                <div><span>Moves</span><strong id="solutionMoveCount">--</strong></div>
+                <div><span>Status</span><strong id="solutionStatus">Ready</strong></div>
+              </div>
+
+              <ol class="solution-stage-list" id="solutionStageList"></ol>
+            </section>
+
+            <aside class="panel solution-preview-panel" aria-label="Solver walkthrough">
+              <div class="panel-header solution-preview-header">
+                <div>
+                  <p class="eyebrow">Walkthrough</p>
+                  <h2 id="walkthroughStageLabel">Scramble</h2>
+                </div>
+                <div class="walkthrough-actions">
+                  <button class="icon-button" id="walkthroughResetButton" type="button" aria-label="Reset walkthrough" title="Reset walkthrough">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M3 12a9 9 0 1 0 3-6.7M3 4v6h6" />
+                    </svg>
+                  </button>
+                  <button class="icon-button" id="walkthroughPlayButton" type="button" aria-label="Play next stage" title="Play next stage">
+                    <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m8 5 11 7-11 7Z" />
+                    </svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5v14M16 5v14" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="solution-preview" id="solutionPreview" role="img" aria-label="Interactive 3D Rubik's cube walkthrough" tabindex="0"></div>
+              <div class="walkthrough-status">
+                <span id="walkthroughProgress">Scrambled</span>
+                <strong id="walkthroughMoveCount">0 / 0</strong>
+              </div>
+              <div class="walkthrough-stage-controls" id="walkthroughStageControls" aria-label="Solver stages"></div>
+            </aside>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/rubiks-cube-solver@1.2.0/lib/index.common.js"></script>
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
