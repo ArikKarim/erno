@@ -81,7 +81,7 @@ body.landing-page .landing-copy {
 
 body.landing-page .landing-accordion-toggle:focus-visible {
   outline: 0;
-  box-shadow: inset 0 0 0 2px var(--focus-ring);
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.24);
 }
 
 .landing-accordion-label {
