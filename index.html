@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>erno</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./landing.css?v=2026-07-08-accordion" />
+    <link rel="stylesheet" href="./styles.css?v=2026-07-08-clean-landing" />
+    <link rel="stylesheet" href="./landing.css?v=2026-07-08-clean-landing" />
+    <link rel="stylesheet" href="./site-fixes.css?v=2026-07-08-clean-landing" />
   </head>
   <body class="landing-page">
     <header class="landing-nav" aria-label="Site navigation">
       <a class="landing-brand" href="./index.html">erno</a>
       <nav class="landing-nav-links" aria-label="App links">
+        <a href="./learn.html">Learn</a>
         <a href="./app.html?view=timer">Timer</a>
         <a href="./app.html?view=solver">Solver</a>
         <button class="landing-theme-button" id="landingThemeButton" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
@@ -29,17 +31,11 @@
     <main>
       <section class="landing" id="landing" aria-labelledby="landingTitle">
         <div class="landing-inner">
-          <h1 class="landing-number" id="landingTitle">
-            <span class="fill-line" style="--line-fill: var(--line-fill-1);">43 quintillion positions.</span>
-          </h1>
-          <p class="landing-copy">
-            <span class="fill-line" style="--line-fill: var(--line-fill-2);">A quiet 3x3 workspace.</span>
-            <span class="fill-line" style="--line-fill: var(--line-fill-3);">Time the scramble.</span>
-            <span class="fill-line" style="--line-fill: var(--line-fill-4);">Study the solve.</span>
-          </p>
+          <h1 class="landing-number" id="landingTitle">43 quintillion combinations.</h1>
+          <p class="landing-copy">A quiet place to learn the cube, time your solves, and study the path back to solved.</p>
           <div class="landing-actions">
             <a class="landing-action primary" href="./app.html?view=timer">Start timing</a>
-            <a class="landing-action" href="./app.html?view=solver">Open solver</a>
+            <a class="landing-action" href="./learn.html">Learn basics</a>
           </div>
         </div>
       </section>
@@ -48,6 +44,20 @@
         <div class="landing-accordion" data-landing-accordion>
           <article class="landing-accordion-card is-active" data-accordion-card>
             <button class="landing-accordion-toggle" type="button" aria-expanded="true">
+              <span class="landing-accordion-label">Learn</span>
+              <span class="landing-accordion-plus" aria-hidden="true">+</span>
+            </button>
+            <div class="landing-accordion-content">
+              <p class="landing-accordion-statement">Understand the cube before racing the clock.</p>
+              <div>
+                <h2>Learn</h2>
+                <p>History, notation, beginner steps, and copyable algorithms.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="landing-accordion-card" data-accordion-card>
+            <button class="landing-accordion-toggle" type="button" aria-expanded="false">
               <span class="landing-accordion-label">Timer</span>
               <span class="landing-accordion-plus" aria-hidden="true">+</span>
             </button>
@@ -56,20 +66,6 @@
               <div>
                 <h2>Timer</h2>
                 <p>Inspection, averages, sessions, and a large focused display.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="landing-accordion-card" data-accordion-card>
-            <button class="landing-accordion-toggle" type="button" aria-expanded="false">
-              <span class="landing-accordion-label">Scramble</span>
-              <span class="landing-accordion-plus" aria-hidden="true">+</span>
-            </button>
-            <div class="landing-accordion-content">
-              <p class="landing-accordion-statement">Generate a 3x3 scramble and keep the preview aligned.</p>
-              <div>
-                <h2>Scramble</h2>
-                <p>White on top, green in front, with click-to-copy notation.</p>
               </div>
             </div>
           </article>
@@ -91,6 +87,6 @@
       </section>
     </main>
 
-    <script src="./landing.js?v=2026-07-08-accordion" type="module"></script>
+    <script src="./landing.js?v=2026-07-08-clean-landing" type="module"></script>
   </body>
 </html>

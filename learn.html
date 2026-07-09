@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>erno learn</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css?v=2026-07-08-learn-basic" />
+    <link rel="stylesheet" href="./landing.css?v=2026-07-08-learn-basic" />
+    <link rel="stylesheet" href="./site-fixes.css?v=2026-07-08-learn-basic" />
+  </head>
+  <body class="learn-page">
+    <header class="landing-nav" aria-label="Site navigation">
+      <a class="landing-brand" href="./index.html">erno</a>
+      <nav class="landing-nav-links" aria-label="App links">
+        <a href="./learn.html" aria-current="page">Learn</a>
+        <a href="./app.html?view=timer">Timer</a>
+        <a href="./app.html?view=solver">Solver</a>
+        <button class="landing-theme-button" id="landingThemeButton" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.25 14.15A8.5 8.5 0 0 1 9.85 3.75a7 7 0 1 0 10.4 10.4Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main class="learn-main">
+      <section class="learn-hero" aria-labelledby="learnTitle">
+        <div class="learn-hero-copy">
+          <p class="learn-kicker">Learn</p>
+          <h1 id="learnTitle">Start simple.</h1>
+          <p>
+            Learn the cube as a few repeatable ideas: centers define faces, edges have two colors, corners have three, and each step protects what you already solved.
+          </p>
+          <div class="learn-actions">
+            <a class="landing-action primary" href="#beginnerPath">See the path</a>
+            <a class="landing-action" href="./app.html?view=timer">Practice</a>
+          </div>
+        </div>
+
+        <aside class="learn-hero-panel" aria-label="Cube basics">
+          <dl class="learn-facts">
+            <div>
+              <dt>Centers</dt>
+              <dd>Fixed face colors</dd>
+            </div>
+            <div>
+              <dt>Edges</dt>
+              <dd>Two-color pieces</dd>
+            </div>
+            <div>
+              <dt>Corners</dt>
+              <dd>Three-color pieces</dd>
+            </div>
+            <div>
+              <dt>Goal</dt>
+              <dd>One layer at a time</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="learn-section learn-two-column" aria-labelledby="notationTitle">
+        <div class="learn-section-copy">
+          <p class="learn-kicker">Notation</p>
+          <h2 id="notationTitle">Six letters are enough to start.</h2>
+          <p>
+            Algorithms are just short turn sequences. Learn the face letters first, then read one move at a time.
+          </p>
+        </div>
+
+        <aside class="learn-notation-card" aria-label="Cube notation">
+          <div class="learn-notation-grid">
+            <span><strong>R</strong> right</span>
+            <span><strong>L</strong> left</span>
+            <span><strong>U</strong> up</span>
+            <span><strong>D</strong> down</span>
+            <span><strong>F</strong> front</span>
+            <span><strong>B</strong> back</span>
+          </div>
+          <p>A plain letter turns clockwise. A prime mark turns counterclockwise, like R'. A 2 means turn twice, like U2.</p>
+        </aside>
+      </section>
+
+      <section class="learn-section learn-two-column" aria-label="Beginner video walkthrough">
+        <div class="learn-section-copy">
+          <p class="learn-kicker">Walkthrough</p>
+          <h2>Watch the shape of the solve once.</h2>
+          <p>
+            JPerm's beginner video is a good first pass. After that, use the steps below as a quiet checklist while you practice.
+          </p>
+        </div>
+
+        <aside class="learn-video-card">
+          <div class="learn-video">
+            <iframe
+              src="https://www.youtube.com/embed/7Ron6MN45LY"
+              title="J Perm - How to Solve a Rubik's Cube in 10 Minutes"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </aside>
+      </section>
+
+      <section class="learn-section" id="beginnerPath" aria-labelledby="pathTitle">
+        <div class="learn-section-heading">
+          <p class="learn-kicker">Beginner path</p>
+          <h2 id="pathTitle">Solve in five passes.</h2>
+        </div>
+
+        <div class="learn-step-list">
+          <article class="learn-step-card">
+            <span class="learn-step-number">01</span>
+            <div class="learn-step-body">
+              <h3>White cross</h3>
+              <p>Place the four white edge pieces around the white center. Match each edge's side color to its center.</p>
+            </div>
+          </article>
+
+          <article class="learn-step-card">
+            <span class="learn-step-number">02</span>
+            <div class="learn-step-body">
+              <h3>White corners</h3>
+              <p>Finish the first layer by putting each white corner between the three centers that share its colors.</p>
+            </div>
+          </article>
+
+          <article class="learn-step-card">
+            <span class="learn-step-number">03</span>
+            <div class="learn-step-body">
+              <h3>Middle edges</h3>
+              <p>Insert the four top-layer edges that do not contain yellow into the middle layer.</p>
+            </div>
+          </article>
+
+          <article class="learn-step-card">
+            <span class="learn-step-number">04</span>
+            <div class="learn-step-body">
+              <h3>Yellow face</h3>
+              <p>Make the yellow cross, then turn the yellow corners until the whole top face is yellow.</p>
+            </div>
+          </article>
+
+          <article class="learn-step-card">
+            <span class="learn-step-number">05</span>
+            <div class="learn-step-body">
+              <h3>Final layer</h3>
+              <p>Move the yellow corners and edges into their correct positions. When the side colors line up, the cube is solved.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="learn-section learn-two-column" aria-labelledby="historyTitle">
+        <div class="learn-section-copy">
+          <p class="learn-kicker">A little context</p>
+          <h2 id="historyTitle">It began as a teaching object.</h2>
+          <p>
+            Erno Rubik built the cube in 1974 to explore movement in three dimensions. Speedcubing came later: people shared methods, competitions formed, and solving became a practice of pattern recognition and calm repetition.
+          </p>
+        </div>
+
+        <aside class="learn-notation-card">
+          <h3>Practice rhythm</h3>
+          <p>Solve slowly first. Correct turns build recognition faster than rushing through mistakes. Once the method feels familiar, open the timer.</p>
+          <div class="learn-actions">
+            <a class="landing-action primary" href="./app.html?view=timer">Open timer</a>
+            <a class="landing-action" href="./app.html?view=solver">Open solver</a>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./landing.js?v=2026-07-08-learn-basic" type="module"></script>
+  </body>
+</html>

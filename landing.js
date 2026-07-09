@@ -4,17 +4,15 @@ const THEME_LABELS = {
   dark: "Switch to light mode",
 };
 
-const landing = document.querySelector("#landing");
 const themeButton = document.querySelector("#landingThemeButton");
 const accordionCards = Array.from(document.querySelectorAll("[data-accordion-card]"));
+const algorithmButtons = Array.from(document.querySelectorAll("[data-copy-algorithm]"));
 
 applyStoredTheme();
-updateLandingScroll();
 setupLandingAccordion();
+setupAlgorithmCopy();
 
 themeButton?.addEventListener("click", toggleLandingTheme);
-window.addEventListener("scroll", updateLandingScroll, { passive: true });
-window.addEventListener("resize", updateLandingScroll);
 
 function getStoredState() {
   try {
@@ -68,28 +66,52 @@ function setActiveAccordionCard(activeCard) {
   });
 }
 
-function updateLandingScroll() {
-  if (!landing) return;
+function setupAlgorithmCopy() {
+  algorithmButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const algorithm = button.dataset.copyAlgorithm;
+      if (!algorithm) return;
 
-  const rect = landing.getBoundingClientRect();
-  const viewportHeight = Math.max(1, window.innerHeight || 1);
-  const scrollRange = Math.max(1, rect.height - viewportHeight);
-  const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
-  const lineFill = (start, end, floor = 0) => {
-    const lineProgress = (progress - start) / (end - start);
-    return Math.min(100, Math.max(floor, lineProgress * 100));
-  };
-  const actionProgress = (progress - 0.78) / 0.18;
-  const actionsAlpha = Math.min(1, Math.max(0, actionProgress));
+      try {
+        await navigator.clipboard.writeText(algorithm);
+        showCopiedState(button);
+      } catch {
+        showCopiedState(button, copyTextFallback(algorithm) ? "Copied" : "Select and copy");
+      }
+    });
+  });
+}
 
-  landing.style.setProperty("--landing-lift", `${Math.round(progress * -10)}px`);
-  landing.style.setProperty("--landing-fade", String(Math.max(0.9, 1 - progress * 0.06).toFixed(3)));
-  landing.style.setProperty("--line-fill-1", `${lineFill(0.02, 0.26, 6).toFixed(2)}%`);
-  landing.style.setProperty("--line-fill-2", `${lineFill(0.24, 0.48).toFixed(2)}%`);
-  landing.style.setProperty("--line-fill-3", `${lineFill(0.46, 0.7).toFixed(2)}%`);
-  landing.style.setProperty("--line-fill-4", `${lineFill(0.66, 0.9).toFixed(2)}%`);
-  landing.style.setProperty("--actions-alpha", actionsAlpha.toFixed(3));
-  landing.classList.toggle("is-actions-ready", actionsAlpha > 0.92);
+function copyTextFallback(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "-999px";
+  textarea.style.opacity = "0";
+  document.body.append(textarea);
+  textarea.select();
+
+  try {
+    return document.execCommand("copy");
+  } catch {
+    return false;
+  } finally {
+    textarea.remove();
+  }
+}
+
+function showCopiedState(button, label = "Copied") {
+  const labelElement = button.querySelector("span");
+  const previousLabel = labelElement?.textContent;
+
+  button.classList.add("is-copied");
+  if (labelElement) labelElement.textContent = label;
+
+  window.setTimeout(() => {
+    button.classList.remove("is-copied");
+    if (labelElement && previousLabel) labelElement.textContent = previousLabel;
+  }, 1100);
 }
 
 function getPreferredTheme() {

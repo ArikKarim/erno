@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>erno app</title>
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=2026-07-08-hero-accordion" />
+    <style>
+      .view-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <div class="app-shell" id="appShell">
@@ -52,6 +60,7 @@
 
       <main>
         <nav class="view-tabs" aria-label="Views">
+          <a class="view-tab view-tab-link" href="./learn.html">Learn</a>
           <button class="view-tab is-active" id="timerTab" type="button" role="tab" aria-controls="timerView" aria-selected="true" data-view="timer">Timer</button>
           <button class="view-tab" id="cfopTab" type="button" role="tab" aria-controls="cfopView" aria-selected="false" data-view="cfop">Solver</button>
         </nav>
