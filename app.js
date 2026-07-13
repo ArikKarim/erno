@@ -1,4 +1,4 @@
-const APP_VERSION = "2026-07-09-nxn-events";
+const APP_VERSION = "2026-07-12-layer-by-layer";
 const APP_CHUNKS = [
   "./chunks/app.00.b64.txt",
   "./chunks/app.01.b64.txt",
@@ -9,6 +9,10 @@ const APP_CHUNKS = [
 ];
 
 const SOURCE_PATCHES = [
+  [
+    'const SOLUTION_METHODS = [\n  { id: "beginner-cfop", label: "Beginner CFOP" },\n  { id: "gods-number", label: "God\'s Number" },\n];',
+    'const SOLUTION_METHODS = [\n  { id: "beginner-cfop", label: "CFOP" },\n  { id: "layer-by-layer", label: "Layer-by-Layer" },\n  { id: "gods-number", label: "God\'s Number" },\n];',
+  ],
   [
     'const EVENTS = [\n  { id: "333", label: "3x3", type: "nxn", size: 3, length: 20 },\n];',
     'const EVENTS = [\n  { id: "222", label: "2x2", type: "nxn", size: 2, length: 9 },\n  { id: "333", label: "3x3", type: "nxn", size: 3, length: 20 },\n  { id: "444", label: "4x4", type: "nxn", size: 4, length: 40 },\n  { id: "555", label: "5x5", type: "nxn", size: 5, length: 60 },\n  { id: "666", label: "6x6", type: "nxn", size: 6, length: 80 },\n  { id: "777", label: "7x7", type: "nxn", size: 7, length: 100 },\n];',
@@ -28,6 +32,18 @@ const SOURCE_PATCHES = [
   [
     '  const faces = ["U", "D", "R", "L", "F", "B"];',
     '  const faces = size === 2 ? ["U", "R", "F"] : ["U", "D", "R", "L", "F", "B"];',
+  ],
+  [
+    '  if (method.id === "gods-number") {\n    return buildGodsNumberSolution(scramble, method);\n  }\n\n  return buildCfopSolution(scramble, method);',
+    '  if (method.id === "gods-number") {\n    return buildGodsNumberSolution(scramble, method);\n  }\n\n  if (method.id === "layer-by-layer") {\n    return buildLayerByLayerSolution(scramble);\n  }\n\n  return buildCfopSolution(scramble, method);',
+  ],
+  [
+    'function buildGodsNumberSolution(scramble) {',
+    'function buildLayerByLayerSolution(scramble) {\n  const solution = buildCfopSolution(scramble);\n  if (!solution.valid) {\n    return {\n      ...solution,\n      stages: [\n        { name: "Bottom cross", label: "4 edges", moves: [], segments: ["Solver unavailable"] },\n        { name: "Lower two layers", label: "Corner-edge pairs", moves: [], segments: ["Solver unavailable"] },\n        { name: "Last-layer orientation", label: "Turn the top face", moves: [], segments: ["Solver unavailable"] },\n        { name: "Last-layer permutation", label: "Finish the cube", moves: [], segments: ["Solver unavailable"] },\n      ],\n    };\n  }\n\n  const [cross, f2l, oll, pll] = solution.stages;\n  const stages = [\n    { ...cross, name: "Bottom cross", label: "4 edges" },\n    { ...f2l, name: "Lower two layers", label: "Corner-edge pairs" },\n    { ...oll, name: "Last-layer orientation", label: "Turn the top face" },\n    { ...pll, name: "Last-layer permutation", label: "Finish the cube" },\n  ];\n\n  return { ...solution, stages };\n}\n\nfunction buildGodsNumberSolution(scramble) {',
+  ],
+  [
+    'const stages = createUnavailableSolutionStages("No Beginner CFOP solution");',
+    'const stages = createUnavailableSolutionStages("No CFOP solution");',
   ],
 ];
 

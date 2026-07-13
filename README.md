@@ -16,7 +16,7 @@ Then visit `http://localhost:4173` for the landing page or `http://localhost:417
 
 ## Features
 
-- 3x3 scramble generation with Beginner CFOP and God's Number solver walkthroughs
+- 3x3 scramble generation with CFOP, Layer-by-Layer, and God's Number solver walkthroughs
 - Separate scroll-led landing page with light/dark mode color treatment
 - Lightweight Learn page with notation, a beginner solve path, brief context, and an embedded JPerm tutorial
 - Full-screen timer workspace support
